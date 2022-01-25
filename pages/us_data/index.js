@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Card from "../components/card";
+import Card from "../../components/card";
 
-const Main = styled.div`
+export const Main = styled.div`
   width: 100%;
   display: flex;
   flex-wrap: wrap;
@@ -26,8 +26,11 @@ const us_data = () => {
       {isLoaded &&
         usData.map((data) => (
           <Card
+            hover="pointer"
+            isCompactData
             key={data.fips}
             state={data.state}
+            stateId={data.state}
             population={
               data.population ? data.population.toLocaleString() : null
             }

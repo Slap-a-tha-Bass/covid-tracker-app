@@ -1,13 +1,31 @@
+import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
+import { GoArrowLeft } from "react-icons/go";
 
 const CardContainer = styled.div`
-  width: 25%;
+  width: ${(props) => props.width || 25}%;
   border: 1px solid white;
+  left: ${(props) => props.left || 0}%;
+  padding: 1rem;
+  &:hover {
+    cursor: ${props => props.hover || ""};
+  }
 `;
-
+const Flexbox = styled.div`
+  display: flex;
+  place-content: space-around;
+`;
+const CenterDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid ${props => props.color || 'red'};
+  width: 90%;
+  margin-left: 5%;
+`;
 const Card = ({
-  isSingleView,
+  stateId,
+  isCompactData,
   state,
   population,
   metrics_testPositivityRatio,
@@ -31,96 +49,157 @@ const Card = ({
   actuals_vaccinationsInitiated,
   actuals_vaccinationsCompleted,
   actuals_vaccinationsAdditionalDose,
+  width,
+  left,
+  hover,
+  color
 }) => {
   return (
-    <CardContainer>
-      <h3>{state}</h3>
-      <p>Population: {population}</p>
-      {metrics_testPositivityRatio ? (
-        <p>Tested positive: {metrics_testPositivityRatio}%</p>
+    <Link href={`/us_data/${stateId}`}>
+      {isCompactData ? (
+        <CardContainer hover={hover}>
+          <h3>{state}</h3>
+          <p>Population: {population}</p>
+          {metrics_testPositivityRatio ? (
+            <p>Tested positive: {metrics_testPositivityRatio}%</p>
+          ) : (
+            <></>
+          )}
+          {metrics_vaccinationsInitiatedRatio ? (
+            <p>First dose: {metrics_vaccinationsInitiatedRatio}%</p>
+          ) : (
+            <></>
+          )}
+          {metrics_vaccinationsCompletedRatio ? (
+            <p>Second dose: {metrics_vaccinationsCompletedRatio}%</p>
+          ) : (
+            <></>
+          )}
+          {metrics_vaccinationsAdditionalDoseRatio ? (
+            <p>Booster shot: {metrics_vaccinationsAdditionalDoseRatio}%</p>
+          ) : (
+            <></>
+          )}
+        </CardContainer>
       ) : (
-        <></>
+        <CardContainer width={width} left={left}>
+          <CenterDiv>
+            <h1>{state}</h1>
+          </CenterDiv>
+          <Flexbox>
+            <div>
+              <h4>People</h4>
+              <p>Population: {population}</p>
+              {metrics_testPositivityRatio ? (
+                <p>Tested positive: {metrics_testPositivityRatio}%</p>
+              ) : (
+                <></>
+              )}
+              {metrics_vaccinationsInitiatedRatio ? (
+                <p>First dose: {metrics_vaccinationsInitiatedRatio}%</p>
+              ) : (
+                <></>
+              )}
+              {metrics_vaccinationsCompletedRatio ? (
+                <p>Second dose: {metrics_vaccinationsCompletedRatio}%</p>
+              ) : (
+                <></>
+              )}
+              {metrics_vaccinationsAdditionalDoseRatio ? (
+                <p>Booster shot: {metrics_vaccinationsAdditionalDoseRatio}%</p>
+              ) : (
+                <></>
+              )}
+              {actuals_positiveTests ? (
+                <p>Tested positive: {actuals_positiveTests}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_negativeTests ? (
+                <p>Tested negative: {actuals_negativeTests}</p>
+              ) : (
+                <></>
+              )}
+            </div>
+            <div>
+              <h4>Vaccines</h4>
+              {actuals_vaccinesDistributed ? (
+                <p>Total distribution: {actuals_vaccinesDistributed}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_vaccinationsInitiated ? (
+                <p>First dose: {actuals_vaccinationsInitiated}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_vaccinationsCompleted ? (
+                <p>Second dose: {actuals_vaccinationsCompleted}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_vaccinationsAdditionalDose ? (
+                <p>Booster shot: {actuals_vaccinationsAdditionalDose}</p>
+              ) : (
+                <></>
+              )}
+            </div>
+          </Flexbox>
+          <CenterDiv />
+          <Flexbox>
+            <div>
+              <h4>Cases</h4>
+              {actuals_cases ? <p>Total cases: {actuals_cases}</p> : <></>}
+              {actuals_deaths ? <p>Total deaths: {actuals_deaths}</p> : <></>}
+              {actuals_newCases ? <p>New cases: {actuals_newCases}</p> : <></>}
+              {actuals_newDeaths ? (
+                <p>New deaths: {actuals_newDeaths}</p>
+              ) : (
+                <></>
+              )}
+            </div>
+            <div>
+              <h4>Capacity</h4>
+              {actuals_hospitalBeds_capacity ? (
+                <p>Bed capacity: {actuals_hospitalBeds_capacity}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_hospitalBeds_currentUsageTotal ? (
+                <p>Beds used: {actuals_hospitalBeds_currentUsageTotal}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_hospitalBeds_currentUsageCovid ? (
+                <p>
+                  Beds used for COVID: {actuals_hospitalBeds_currentUsageCovid}
+                </p>
+              ) : (
+                <></>
+              )}
+              {actuals_icuBeds_capacity ? (
+                <p>ICU capacity: {actuals_icuBeds_capacity}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_icuBeds_currentUsageTotal ? (
+                <p>ICU used: {actuals_icuBeds_currentUsageTotal}</p>
+              ) : (
+                <></>
+              )}
+              {actuals_icuBeds_currentUsageCovid ? (
+                <p>ICU used for COVID: {actuals_icuBeds_currentUsageCovid}</p>
+              ) : (
+                <></>
+              )}
+            </div>
+          </Flexbox>
+          <CenterDiv color="black" style={{fontSize: '3rem', color: "white", cursor: "pointer", margin: "1rem"}}>
+              <Link href="/us_data"><GoArrowLeft /></Link>
+          </CenterDiv>
+        </CardContainer>
       )}
-      {metrics_vaccinationsInitiatedRatio ? (
-        <p>First dose: {metrics_vaccinationsInitiatedRatio}%</p>
-      ) : (
-        <></>
-      )}
-      {metrics_vaccinationsCompletedRatio ? (
-        <p>Second dose: {metrics_vaccinationsCompletedRatio}%</p>
-      ) : (
-        <></>
-      )}
-      {metrics_vaccinationsAdditionalDoseRatio ? (
-        <p>Booster shot: {metrics_vaccinationsAdditionalDoseRatio}%</p>
-      ) : (
-        <></>
-      )}
-      {actuals_positiveTests ? (
-        <p>Tested positive: {actuals_positiveTests}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_negativeTests ? (
-        <p>Tested negative: {actuals_negativeTests}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_vaccinationsInitiated ? (
-        <p>First dose: {actuals_vaccinationsInitiated}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_vaccinationsCompleted ? (
-        <p>Second dose: {actuals_vaccinationsCompleted}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_vaccinationsAdditionalDose ? (
-        <p>Booster shot: {actuals_vaccinationsAdditionalDose}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_vaccinesDistributed ? (
-        <p>Total distribution: {actuals_vaccinesDistributed}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_cases ? <p>Total cases: {actuals_cases}</p> : <></>}
-      {actuals_deaths ? <p>Total deaths: {actuals_deaths}</p> : <></>}
-      {actuals_hospitalBeds_capacity ? (
-        <p>Bed capacity: {actuals_hospitalBeds_capacity}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_hospitalBeds_currentUsageTotal ? (
-        <p>Beds used: {actuals_hospitalBeds_currentUsageTotal}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_hospitalBeds_currentUsageCovid ? (
-        <p>Beds used for COVID: {actuals_hospitalBeds_currentUsageCovid}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_icuBeds_capacity ? (
-        <p>ICU capacity: {actuals_icuBeds_capacity}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_icuBeds_currentUsageTotal ? (
-        <p>ICU used: {actuals_icuBeds_currentUsageTotal}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_icuBeds_currentUsageCovid ? (
-        <p>ICU used for COVID: {actuals_icuBeds_currentUsageCovid}</p>
-      ) : (
-        <></>
-      )}
-      {actuals_newCases ? <p>New cases: {actuals_newCases}</p> : <></>}
-      {actuals_newDeaths ? <p>New deaths: {actuals_newDeaths}</p> : <></>}
-    </CardContainer>
+    </Link>
   );
 };
 
