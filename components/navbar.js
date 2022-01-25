@@ -20,8 +20,8 @@ const Navbar = ({ setTheme, theme }) => {
       <Logo>
         <Link href="/">COVID Tracker</Link>
       </Logo>
-      <Link href="/us_data">US Data</Link>
-      <Link href="/page2">page 2</Link>
+      <Link href="/us_data">US Current</Link>
+      <Link href="/us_historic">US Historic</Link>
       <Link href="/page3">page 3</Link>
       <Link href="/page4">page 4</Link>
       <Link href="/page5">page 5</Link>
