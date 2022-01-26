@@ -11,23 +11,27 @@ export const Main = styled.div`
 const us_data = () => {
   const [usData, setUsData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-
+  const [longLoad, setLongLoad] = useState(false);
   useEffect(() => {
     fetch(
       "https://api.covidactnow.org/v2/states.json?apiKey=581c8a2b25554c5bad57cc34b0b2538f"
     )
       .then((res) => res.json())
       .then((usData) => setUsData(usData));
-    setTimeout(() => setIsLoaded(true), 1500);
+    setTimeout(() => setIsLoaded(true), 1000);
+    setLongLoad(true);
   }, []);
-  if (!isLoaded) return <h1 className="typewriter">Loading...</h1>;
+  if (!isLoaded || !longLoad) return <h1 className="typewriter">Loading...</h1>;
+
   return (
     <Main>
       {isLoaded &&
+        longLoad &&
         usData.map((data) => (
           <Card
             hover="pointer"
             isCompactData
+            route="us_data"
             key={data.fips}
             state={data.state}
             stateId={data.state}

@@ -1,7 +1,7 @@
 const styles = {
     fonts: {
-      heading: `"Source Code Pro", monospace`,
-      primary: `"Source Code Pro", monospace`,
+      heading: `"Roboto Mono", monospace`,
+      primary: `"Roboto Mono", monospace`,
     },
   };
   // Dark Theme

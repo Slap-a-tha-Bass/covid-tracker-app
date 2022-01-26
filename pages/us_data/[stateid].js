@@ -13,9 +13,17 @@ const StateId = () => {
   const router = useRouter();
   const { stateid } = router.query;
 
+  const [usData, setUsData] = useState([]);
+
   const [stateData, setStateData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
-
+  useEffect(() => {
+    fetch(
+      "https://api.covidactnow.org/v2/states.json?apiKey=581c8a2b25554c5bad57cc34b0b2538f"
+    )
+      .then((res) => res.json())
+      .then((usData) => setUsData(usData));
+  }, []);
   useEffect(() => {
     if (stateid) {
       fetch(
@@ -24,20 +32,36 @@ const StateId = () => {
         .then((res) => res.json())
         .then((data) => {
           setStateData(data);
-          setIsLoaded(true);
+          setTimeout(() => setIsLoaded(true), 1000);
         });
     }
   }, [stateid]);
 
-  if (!isLoaded) return <h1>Loading...</h1>;
+  if (!isLoaded) return <h1 className="typewriter">Loading...</h1>;
+  let averageCasesPerState;
+  if (isLoaded) {
+    if (usData) {
+      const numberArray = usData.map((num, index) =>
+        num.actuals.cases ? num.actuals.cases : null
+      );
+      if (numberArray.indexOf(null)) {
+        numberArray.splice(numberArray.indexOf(null), 1);
+      }
+      const filterData = numberArray.reduce((a, b) => a + b);
+      averageCasesPerState = (filterData / numberArray.length).toFixed(2);
+    }
+  }
+  console.log({ averageCasesPerState });
   return (
     <Main>
       {isLoaded && (
         <Card
-          width={50}
+          width={70}
           key={stateData.fips}
+          route="us_data"
           state={stateData.state}
           stateId={stateData.state}
+          averageCases={averageCasesPerState}
           population={
             stateData.population ? stateData.population.toLocaleString() : null
           }

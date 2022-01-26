@@ -2,6 +2,7 @@ import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import { GoArrowLeft } from "react-icons/go";
+import BarChartCases from "./barchart_cases";
 
 const CardContainer = styled.div`
   width: ${(props) => props.width || 25}%;
@@ -9,7 +10,7 @@ const CardContainer = styled.div`
   left: ${(props) => props.left || 0}%;
   padding: 1rem;
   &:hover {
-    cursor: ${props => props.hover || ""};
+    cursor: ${(props) => props.hover || ""};
   }
 `;
 const Flexbox = styled.div`
@@ -19,15 +20,18 @@ const Flexbox = styled.div`
 const CenterDiv = styled.div`
   display: flex;
   justify-content: center;
-  border-bottom: 2px solid ${props => props.color || 'red'};
+  border-bottom: 2px solid ${(props) => props.color || "red"};
   width: 90%;
   margin-left: 5%;
 `;
+
 const Card = ({
   stateId,
   isCompactData,
+  route,
   state,
   population,
+  averageCases,
   metrics_testPositivityRatio,
   metrics_vaccinationsInitiatedRatio,
   metrics_vaccinationsCompletedRatio,
@@ -52,10 +56,10 @@ const Card = ({
   width,
   left,
   hover,
-  color
+  color,
 }) => {
   return (
-    <Link href={`/us_data/${stateId}`}>
+    <Link href={`/${route}/${stateId}`}>
       {isCompactData ? (
         <CardContainer hover={hover}>
           <h3>{state}</h3>
@@ -86,6 +90,9 @@ const Card = ({
           <CenterDiv>
             <h1>{state}</h1>
           </CenterDiv>
+          <BarChartCases
+            State_Cases={actuals_cases.split(",").join("")}
+          />
           <Flexbox>
             <div>
               <h4>People</h4>
@@ -194,8 +201,18 @@ const Card = ({
               )}
             </div>
           </Flexbox>
-          <CenterDiv color="black" style={{fontSize: '3rem', color: "white", cursor: "pointer", margin: "1rem"}}>
-              <Link href="/us_data"><GoArrowLeft /></Link>
+          <CenterDiv
+            color="black"
+            style={{
+              fontSize: "3rem",
+              color: "white",
+              cursor: "pointer",
+              margin: "1rem",
+            }}
+          >
+            <Link href={`/${route}`}>
+              <GoArrowLeft />
+            </Link>
           </CenterDiv>
         </CardContainer>
       )}

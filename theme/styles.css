@@ -1,18 +1,19 @@
 /* @import url("https://fonts.googleapis.com/css2?family=Montserrat&family=Orbitron:wght@400;700;900&display=swap"); */
 
-/* @import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap") */
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap");
 
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro:wght@200&display=swap"); */
 
 /* @import url("https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap") */
  
 .typewriter {
     overflow: hidden; /* Ensures the content is not revealed until the animation */
-    border-right: 0.15em solid red; /* The typwriter cursor */
+    /* border-right: 0.15em solid red; The typwriter cursor */
+    padding: 1rem;
     white-space: wrap; /* Keeps the content on a single line */
     margin: 0 auto; /* Gives that scrolling effect as the typing happens */
     letter-spacing: 0.15em; /* Adjust as needed */
-    animation: typing 5s steps(40, end), blink-caret 0.75s step-end infinite;
+    animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
   }
   /* The typing effect */
 @keyframes typing {
