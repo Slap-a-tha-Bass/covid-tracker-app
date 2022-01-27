@@ -32,8 +32,6 @@ const BarChartCases = (Deaths_Per_Case) => {
         setIsLoaded(true);
       });
   }, []);
-
-  if (!isLoaded) return <h1 className="typewriter">Loading...</h1>;
   let averageDeathsPerState;
   if (isLoaded) {
     if (usData) {
@@ -77,7 +75,7 @@ const BarChartCases = (Deaths_Per_Case) => {
       },
       title: {
         display: true,
-        text: `Total Deaths`,
+        text: `Death Percentage %`,
         color: "white",
         font: {
           size: 24
@@ -88,12 +86,12 @@ const BarChartCases = (Deaths_Per_Case) => {
   const data = {
     datasets: [
       {
-        label: `Percent Death per Case`,
+        label: `State % Death`,
         data: Deaths_Per_Case,
         backgroundColor: "red",
       },
       {
-        label: "US Death per Case",
+        label: "US % Death",
         data: [deathsPerCase],
         backgroundColor: "blue",
       },

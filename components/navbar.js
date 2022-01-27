@@ -13,17 +13,21 @@ const Container = styled.nav`
 const Logo = styled.div`
   font-size: 3rem;
 `;
-
+const NavItem = styled.div`
+  font-size: 1.5rem;
+`;
 const Navbar = ({ setTheme, theme }) => {
   return (
     <Container className="nav-link">
       <Logo>
         <Link href="/">COVID Tracker</Link>
       </Logo>
-      <Link href="/us_data">US Current</Link>
-      <Link href="/us_historic">US Historic</Link>
-      <Link href="/page3">page 3</Link>
-      <Link href="/page4">page 4</Link>
+      <NavItem>
+        <Link href="/us_data">US Current</Link>
+      </NavItem>
+      <NavItem>
+        <Link href="/us_historic">US Historic</Link>
+      </NavItem>
       <Link href="/page5">page 5</Link>
     </Container>
   );

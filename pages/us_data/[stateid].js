@@ -59,6 +59,8 @@ const StateId = () => {
           width={65}
           key={stateData.fips}
           route="us_data"
+          showBarChart
+          isCurrentData
           state={stateData.state}
           stateId={stateData.state}
           averageCases={averageCasesPerState}

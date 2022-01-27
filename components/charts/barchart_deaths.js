@@ -32,8 +32,6 @@ const BarChartCases = (State_Deaths) => {
         setIsLoaded(true);
       });
   }, []);
-
-  if (!isLoaded) return <h1 className="typewriter">Loading...</h1>;
   let averageDeathsPerState;
   if (isLoaded) {
     if (usData) {

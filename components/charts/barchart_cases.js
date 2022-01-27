@@ -65,7 +65,7 @@ const BarChartCases = (State_Cases) => {
         text: `Total Cases`,
         color: "white",
         font: {
-          size: 24
+          size: 24,
         },
       },
     },

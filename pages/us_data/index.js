@@ -17,9 +17,11 @@ const us_data = () => {
       "https://api.covidactnow.org/v2/states.json?apiKey=581c8a2b25554c5bad57cc34b0b2538f"
     )
       .then((res) => res.json())
-      .then((usData) => setUsData(usData));
+      .then((usData) => {
+        setUsData(usData);
+        setLongLoad(true);
+      });
     setTimeout(() => setIsLoaded(true), 1000);
-    setLongLoad(true);
   }, []);
   if (!isLoaded || !longLoad) return <h1 className="typewriter">Loading...</h1>;
 
