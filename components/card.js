@@ -2,7 +2,9 @@ import Link from "next/link";
 import React from "react";
 import styled from "styled-components";
 import { GoArrowLeft } from "react-icons/go";
-import BarChartCases from "./barchart_cases";
+import BarChartCases from "./charts/barchart_cases";
+import BarChartDeaths from "./charts/barchart_deaths";
+import BarChartAvg from './charts/barchart_avg';
 
 const CardContainer = styled.div`
   width: ${(props) => props.width || 25}%;
@@ -90,9 +92,12 @@ const Card = ({
           <CenterDiv>
             <h1>{state}</h1>
           </CenterDiv>
-          <BarChartCases
-            State_Cases={actuals_cases.split(",").join("")}
-          />
+          <BarChartCases State_Cases={actuals_cases.split(",").join("")} />
+          <CenterDiv />
+          <BarChartDeaths State_Deaths={actuals_deaths.split(",").join("")} />
+          <CenterDiv />
+          <BarChartAvg Deaths_Per_Case={actuals_deaths.split(",").join("") / actuals_cases.split(",").join("") * 100} />
+          <CenterDiv />
           <Flexbox>
             <div>
               <h4>People</h4>

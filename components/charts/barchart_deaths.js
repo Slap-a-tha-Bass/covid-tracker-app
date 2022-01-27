@@ -19,7 +19,7 @@ ChartJS.register(
   Legend
 );
 
-const BarChartCases = (State_Cases) => {
+const BarChartCases = (State_Deaths) => {
   const [usData, setUsData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
@@ -34,21 +34,19 @@ const BarChartCases = (State_Cases) => {
   }, []);
 
   if (!isLoaded) return <h1 className="typewriter">Loading...</h1>;
-  let averageCasesPerState;
+  let averageDeathsPerState;
   if (isLoaded) {
     if (usData) {
       const numberArray = usData.map((num, index) =>
-        num.actuals.cases ? num.actuals.cases : null
+        num.actuals.deaths ? num.actuals.deaths : null
       );
       if (numberArray.indexOf(null)) {
         numberArray.splice(numberArray.indexOf(null), 1);
       }
       const filterData = numberArray.reduce((a, b) => a + b);
-      averageCasesPerState = (filterData / numberArray.length).toFixed(0);
+      averageDeathsPerState = (filterData / numberArray.length).toFixed(0);
     }
   }
-
-  console.log(averageCasesPerState);
   const options = {
     responsive: true,
     plugins: {
@@ -63,7 +61,7 @@ const BarChartCases = (State_Cases) => {
       },
       title: {
         display: true,
-        text: `Total Cases`,
+        text: `Total Deaths`,
         color: "white",
         font: {
           size: 24
@@ -74,13 +72,13 @@ const BarChartCases = (State_Cases) => {
   const data = {
     datasets: [
       {
-        label: `State Cases`,
-        data: State_Cases,
+        label: `State Deaths`,
+        data: State_Deaths,
         backgroundColor: "red",
       },
       {
-        label: "US Average Cases",
-        data: [averageCasesPerState],
+        label: "US Average Deaths",
+        data: [averageDeathsPerState],
         backgroundColor: "blue",
       },
     ],

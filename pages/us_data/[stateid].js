@@ -56,7 +56,7 @@ const StateId = () => {
     <Main>
       {isLoaded && (
         <Card
-          width={70}
+          width={65}
           key={stateData.fips}
           route="us_data"
           state={stateData.state}
