@@ -1,5 +1,6 @@
 {
-  "name": "nextjs-boiler-styled-components",
+  "name": "covid-tracker-app",
+  "author": "Corey DeLoach",
   "private": true,
   "scripts": {
     "dev": "next dev",
