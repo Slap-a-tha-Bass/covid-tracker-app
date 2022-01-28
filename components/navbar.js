@@ -20,7 +20,7 @@ const Navbar = ({ setTheme, theme }) => {
   return (
     <Container className="nav-link">
       <Logo>
-        <Link href="/">COVID Tracker</Link>
+        <Link href="/">US COVID Tracker</Link>
       </Logo>
       <NavItem>
         <Link href="/us_data">US Current</Link>
@@ -28,7 +28,9 @@ const Navbar = ({ setTheme, theme }) => {
       <NavItem>
         <Link href="/us_historic">US Historic</Link>
       </NavItem>
-      <Link href="/page5">page 5</Link>
+      <NavItem>
+        <a href="https://github.com/Slap-a-tha-Bass/covid-tracker-app" target="_blank">Github Repo</a>
+      </NavItem>
     </Container>
   );
 };

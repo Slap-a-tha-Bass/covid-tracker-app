@@ -12,18 +12,10 @@ const Main = styled.div`
 const StateId = () => {
   const router = useRouter();
   const { stateid } = router.query;
-
-  const [usData, setUsData] = useState([]);
-
+  
   const [stateData, setStateData] = useState();
   const [isLoaded, setIsLoaded] = useState(false);
-  useEffect(() => {
-    fetch(
-      "https://api.covidactnow.org/v2/states.json?apiKey=581c8a2b25554c5bad57cc34b0b2538f"
-    )
-      .then((res) => res.json())
-      .then((usData) => setUsData(usData));
-  }, []);
+
   useEffect(() => {
     if (stateid) {
       fetch(`https://api.covidactnow.org/v2/state/${stateid}.timeseries.json?apiKey=581c8a2b25554c5bad57cc34b0b2538f
@@ -31,19 +23,13 @@ const StateId = () => {
         .then((res) => res.json())
         .then((data) => {
           setStateData(data);
-          console.log({ data });
           setTimeout(() => setIsLoaded(true), 1000);
         });
     }
   }, [stateid]);
 
   if (!isLoaded) return <h1 className="typewriter">Loading...</h1>;
-  let casesArray;
-  if (isLoaded) {
-    if (stateData) {
-      casesArray = stateData.actualsTimeseries.map((cases) => cases.cases);
-    }
-  }
+
   return (
     <Main>
       {isLoaded && (

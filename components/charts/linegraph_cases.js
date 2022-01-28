@@ -78,15 +78,7 @@ if(labelsArray){
     datasets: [
       {
         label: "State Cases",
-        color: "white",
-        data: casesArray,
-        fill: false,
-        tension: 0.1,
-        borderColor: "red",
-        backgroundColor: "rgba(255, 99, 132, 0.5)",
-      },
-      {
-        label: "State Positive Tests",
+        borderWidth: 5,
         color: "white",
         data: casesArray,
         fill: false,

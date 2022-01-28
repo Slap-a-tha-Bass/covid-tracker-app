@@ -1,7 +1,7 @@
 ### Slap-a-tha-Bass
 
--NextJS Boiler With Styled Components
--Custom styles already applied with Navbar and pages ready to be modified
+-COVID Tracker App built with Styled Components
+-Data is fetched from covidactnow.org
 
 ## Getting Started
 
@@ -15,14 +15,6 @@ Don't forget to remove the git repository!
 
 ```bash
 rm -rf .git
-```
-
-Then, run the build script:
-
-```bash
-npm run build
-# or
-yarn dev
 ```
 
 Then, run the development server:

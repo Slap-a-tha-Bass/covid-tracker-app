@@ -79,7 +79,7 @@ if(labelsArray){
       {
         label: "State Deaths",
         color: "white",
-        axis: "y",
+        borderWidth: 5,
         data: deathsArray,
         fill: false,
         tension: 0.1,

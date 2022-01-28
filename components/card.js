@@ -21,6 +21,10 @@ const Flexbox = styled.div`
   display: flex;
   place-content: space-around;
 `;
+const FlexBetween = styled.div`
+  display: flex;
+  place-content: space-between;
+`;
 export const CenterDiv = styled.div`
   display: flex;
   justify-content: center;
@@ -116,7 +120,19 @@ const Card = ({
             />
           )}
           {showLineGraph && <LineGraphCases />}
+          {showLineGraph && (
+            <FlexBetween>
+              <h5>March 2020</h5>
+              <h5>Present</h5>
+            </FlexBetween>
+          )}
           {showLineGraph && <LineGraphDeaths />}
+          {showLineGraph && (
+            <FlexBetween>
+              <h5>March 2020</h5>
+              <h5>Present</h5>
+            </FlexBetween>
+          )}
           <CenterDiv />
           {isCurrentData && (
             <Flexbox>
