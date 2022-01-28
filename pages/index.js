@@ -11,10 +11,6 @@ const Span = styled.span`
   font-size: 2rem;
   color: red;
 `;
-const A = styled.a`
-  color: white;
-  text-decoration: underline;
-`
 export default function Home(props) {
   return (
     <div>
@@ -22,7 +18,7 @@ export default function Home(props) {
         <title>US COVID Tracker</title>
       </Head>
       <CenterDiv>
-        <h1>Data is fetched from <A href="https://covidactnow.org/" target="_blank">covidactnow.org</A></h1>
+        <h1>Data is fetched from <a href="https://covidactnow.org/" target="_blank">covidactnow.org</a></h1>
       </CenterDiv>
       <P>
         The <Span><Link href="/us_data" >US Current</Link></Span> tab will show you a list of all states,

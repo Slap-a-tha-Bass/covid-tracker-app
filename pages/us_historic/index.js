@@ -11,7 +11,7 @@ export const Main = styled.div`
 const us_historic = () => {
   const [usData, setUsData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [longLoad, setLongLoad] = useState(false);
+
   useEffect(() => {
     fetch(
       "https://api.covidactnow.org/v2/states.timeseries.json?apiKey=581c8a2b25554c5bad57cc34b0b2538f"
@@ -19,13 +19,10 @@ const us_historic = () => {
       .then((res) => res.json())
       .then((usData) => {
         setUsData(usData);
-        setLongLoad(true);
+        setIsLoaded(true);
       });
-    setTimeout(() => setIsLoaded(true), 1000);
-    
   }, []);
-  if (!isLoaded || !longLoad) return <h1 className="typewriter">Loading...</h1>;
-
+  if (!isLoaded) return <h1 className="typewriter">Loading...</h1>;
   return (
     <div>
       <CenterDiv>
@@ -33,7 +30,6 @@ const us_historic = () => {
       </CenterDiv>
       <Main>
         {isLoaded &&
-          longLoad &&
           usData.map((data) => (
             <Card
               hover="pointer"
